@@ -1,0 +1,38 @@
+import java.util.HashMap;
+
+public class Solution {
+    HashMap<RandomListNode, RandomListNode> visited = new HashMap<>();
+
+    public RandomListNode CreateNode(RandomListNode node)
+    {
+        if (node != null) {
+            if (visited.containsKey(node)) {
+                return visited.get(node);
+            }else {
+                visited.put(node, new RandomListNode(node.label));
+                return visited.get(node);
+            }
+        }
+        return null;
+    }
+
+    public RandomListNode Clone(RandomListNode pHead) {
+        if (pHead == null) {
+            return null;
+        }
+        RandomListNode oldNode = pHead;
+        RandomListNode newNode = new RandomListNode(oldNode.label);
+        visited.put(oldNode, newNode);
+
+        while (oldNode != null) {
+            newNode.random = CreateNode(oldNode.random);
+            newNode.next = CreateNode(oldNode.next);
+
+            oldNode = oldNode.next;
+            newNode = newNode.next;
+        }
+
+        return visited.get(pHead);
+    }
+
+}
