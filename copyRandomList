@@ -1,8 +1,10 @@
 import java.util.HashMap;
 
 public class Solution {
+    //创建旧节点与新节点对应的HashMap
     HashMap<RandomListNode, RandomListNode> visited = new HashMap<>();
-
+    
+    //如果指针指向的节点不存在，则创建
     public RandomListNode CreateNode(RandomListNode node)
     {
         if (node != null) {
@@ -15,7 +17,8 @@ public class Solution {
         }
         return null;
     }
-
+    
+    //复制第一个节点，迭代知道整个链表复制完
     public RandomListNode Clone(RandomListNode pHead) {
         if (pHead == null) {
             return null;
